@@ -1,0 +1,53 @@
+.weather-button {
+  padding: 10px;
+  // min-width: 55%;
+  // max-width: 550px;
+  width: 550px;
+
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: white;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+
+  button {
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 100;
+    font-size: 15px;
+
+    &:hover,
+    &:focus {
+      background-color: white;
+      color: #333;
+    }
+  }
+}
+
+// tailwind 사용할 경우
+// .weather-button {
+//   @apply px-4 py-2 text-sm font-medium text-gray-900 bg-white bg-opacity-50 border-none hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-1 focus:ring-green-800 focus:text-green-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-green-800 dark:focus:text-white;
+// }
+
+// .weather-button-line,
+// .weather-button-line-r {
+//   @apply border-t border-b;
+// }
+
+// .weather-button-line-r {
+//   @apply border-r;
+// }
+
+// .weather-button-extend {
+//   @apply border rounded-s-lg;
+// }
+
+// .weather-button-last {
+//   @apply border rounded-e-lg;
+// }
