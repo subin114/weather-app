@@ -15,6 +15,7 @@ function App() {
   };
 
   const [loading, setLoading] = useState(false);
+  const [apiError, setAPIError] = useState("");
 
   /** 현재 위치 (위도, 경도) 받아오는 함수 */
   const getCurrentLocation = () => {
@@ -27,23 +28,32 @@ function App() {
 
   /** 현재 날씨 받아오는 함수 */
   const getWeatherByCurrentLocation = async (lat, lon) => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY.key}&units=metric`;
-    setLoading(true);
-    let response = await fetch(url);
-    let data = await response.json();
-    setWeather(data);
-    setLoading(false);
+    try {
+      let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY.key}&units=metric`;
+      setLoading(true);
+      let response = await fetch(url);
+      let data = await response.json();
+      setWeather(data);
+      setLoading(false);
+    } catch (error) {
+      setAPIError(error.message);
+      setLoading(false);
+    }
   };
 
   /** 도시별 날씨 받아오는 함수 */
   const getWeatherByCity = async () => {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY.key}&units=metric`;
-    setLoading(true);
-    const response = await fetch(url);
-    const data = await response.json();
-    // console.log("Data", data);
-    setWeather(data);
-    setLoading(false);
+    try {
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY.key}&units=metric`;
+      setLoading(true);
+      const response = await fetch(url);
+      const data = await response.json();
+      setWeather(data);
+      setLoading(false);
+    } catch (error) {
+      setAPIError(error.message);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -54,10 +64,19 @@ function App() {
     }
   }, [city]);
 
+  /** Current Location 버튼 클릭 함수 */
+  const handleCityChange = (city) => {
+    if (city === "current") {
+      setCity("");
+    } else {
+      setCity(city);
+    }
+  };
+
   return (
     <div>
       {loading ? (
-        <div className="container">
+        <div className="container center">
           <ClipLoader
             color="#f88c6b"
             loading={loading}
@@ -66,16 +85,23 @@ function App() {
             data-testid="loader"
           />
         </div>
-      ) : (
+      ) : !apiError ? (
         <div className="container">
           <section>
             <WeatherDetail weather={weather} />
-            <WeatherButton cities={cities} setCity={setCity} />
+            <WeatherButton
+              cities={cities}
+              setCity={setCity}
+              handleCityChange={handleCityChange}
+              selectedCity={city}
+            />
           </section>
           <section>
             <WeatherBox weather={weather} />
           </section>
         </div>
+      ) : (
+        apiError
       )}
     </div>
   );

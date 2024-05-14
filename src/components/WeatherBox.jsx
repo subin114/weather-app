@@ -8,9 +8,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const WeatherBox = ({ weather }) => {
-  console.log("weather?!", weather);
-  console.log("weather temp?!", weather?.main.temp);
   const iconUrl = `https://openweathermap.org/img/wn/${weather?.weather[0].icon}.png`;
+
+  /** 현재 날짜 받아오는 함수 */
+  // 응답에서 시간대 정보 가져오기
+  const timezoneOffsetSeconds = weather?.timezone;
+
+  // 현재 시간 구하기
+  const currentTimeMillis = Date.now() + timezoneOffsetSeconds * 1000;
+  const currentTime = new Date(currentTimeMillis);
+  // console.log("currrrrr", currentTime);
 
   return (
     <div className="weather-box">
@@ -41,7 +48,7 @@ const WeatherBox = ({ weather }) => {
             <FontAwesomeIcon className="icon" icon={faLocationDot} />
             {weather?.name}
           </span>
-          <span className="date">2024.05.14</span>
+          <span className="date">{currentTime.toLocaleString()}</span>
         </div>
         <span className="weather-desc">
           <img src={iconUrl} className="weather-icon" alt="Weather Icon" />

@@ -11,7 +11,8 @@ const WeatherDetail = ({ weather }) => {
       <ul>
         <li>
           <span>Wind</span>
-          {(weather?.wind.speed).toFixed(1)}km/h
+          {/* {(weather?.wind.speed).toFixed(1)}km/h */}
+          {weather?.wind.speed}km/h
         </li>
         <li>
           <span>Clouds</span>

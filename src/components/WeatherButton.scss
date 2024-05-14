@@ -26,10 +26,41 @@
     font-weight: 400;
     cursor: pointer;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: white;
       color: #333;
     }
+  }
+
+  .active {
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 100;
+    font-size: 13px;
+    background-color: white;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  .remove {
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 100;
+    font-size: 13px;
+    color: white;
+    background-color: transparent;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 400;
+    cursor: pointer;
   }
 }
