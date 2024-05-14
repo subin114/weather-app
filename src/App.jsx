@@ -2,11 +2,12 @@ import "./App.scss";
 import { useEffect, useState } from "react";
 import WeatherBox from "./components/WeatherBox";
 import WeatherButton from "./components/WeatherButton";
+import WeatherDetail from "./components/WeatherDetail";
 import ClipLoader from "react-spinners/ClipLoader";
 
 function App() {
   const [weather, setWeather] = useState(null);
-  const cities = ["seoul", "jeju", "paris", "new york"];
+  const cities = ["Seoul", "Jeju", "Paris", "London"];
   const [city, setCity] = useState("");
 
   let API_KEY = {
@@ -67,8 +68,13 @@ function App() {
         </div>
       ) : (
         <div className="container">
-          <WeatherBox weather={weather} />
-          <WeatherButton cities={cities} setCity={setCity} />
+          <section>
+            <WeatherDetail weather={weather} />
+            <WeatherButton cities={cities} setCity={setCity} />
+          </section>
+          <section>
+            <WeatherBox weather={weather} />
+          </section>
         </div>
       )}
     </div>

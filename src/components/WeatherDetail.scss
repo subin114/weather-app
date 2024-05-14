@@ -1,0 +1,22 @@
+@import "../assets/abstracts/mixin_common";
+
+.weather-detail {
+  padding: 0 25px;
+  color: white;
+  border-top-left-radius: 35px;
+
+  h2 {
+    @include title;
+  }
+
+  ul {
+    padding: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+  }
+}

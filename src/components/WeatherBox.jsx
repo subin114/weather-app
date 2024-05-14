@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import "./WeatherBox.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLocationDot,
+  faArrowUp,
+  faArrowDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 const WeatherBox = ({ weather }) => {
   console.log("weather?!", weather);
@@ -10,20 +14,39 @@ const WeatherBox = ({ weather }) => {
 
   return (
     <div className="weather-box">
-      <div className="weather-name">
-        <FontAwesomeIcon className="icon" icon={faLocationDot} />
-        {weather?.name}
-      </div>
+      <h2>Forcast</h2>
+
+      {/* weather-info */}
       <div className="weather-info">
-        <img src={iconUrl} alt="Weather Icon" />
         <div className="weather-temp">
-          <span>{Math.trunc(weather?.main.temp)}°</span>
-          <span>
-            ({Math.trunc((weather?.main.temp * 9) / 5 + 32)}
-            °F)
+          <span className="temp-main">{Math.trunc(weather?.main.temp)}°</span>
+          <span className="temp-avg">
+            <span>
+              <FontAwesomeIcon className="icon up" icon={faArrowUp} />
+              {Math.trunc(weather?.main.temp_max)}°
+            </span>
+            <span>
+              <FontAwesomeIcon className="icon down" icon={faArrowDown} />
+              {Math.trunc(weather?.main.temp_min)}°
+            </span>
           </span>
         </div>
-        <span className="weather-desc">{weather?.weather[0].description}</span>
+        <div className="weather-next"></div>
+      </div>
+
+      {/* weather-name */}
+      <div className="weather-name">
+        <div className="weather-location">
+          <span>
+            <FontAwesomeIcon className="icon" icon={faLocationDot} />
+            {weather?.name}
+          </span>
+          <span className="date">2024.05.14</span>
+        </div>
+        <span className="weather-desc">
+          <img src={iconUrl} className="weather-icon" alt="Weather Icon" />
+          {weather?.weather[0].description}
+        </span>
       </div>
     </div>
   );

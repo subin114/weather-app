@@ -5,7 +5,8 @@ const WeatherButton = ({ cities, setCity }) => {
   console.log("cities??", cities);
 
   return (
-    <div className="mt-10 weather-button">
+    <div className="weather-button">
+      <h2>Locations</h2>
       <button>Current Location</button>
 
       {cities.map((item, idx) => (
